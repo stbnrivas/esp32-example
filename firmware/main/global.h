@@ -16,6 +16,7 @@ char buf_tx[BUF_SIZE];
 
 TaskHandle_t task_boot_loop;
 TaskHandle_t task_init_loop;
+TaskHandle_t task_network_loop;
 
 
 #endif
