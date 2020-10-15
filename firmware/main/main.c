@@ -14,6 +14,7 @@
 
 #include "global.h"
 #include "task_boot.h"
+#include "task_init.h"
 
 
 void app_main(){
@@ -21,8 +22,8 @@ void app_main(){
     ESP_LOGI("ESP32_APP","booting");
 
     xTaskCreate(&vTaskBoot, "task_boot", 1024*2, NULL, 2, &task_boot_loop); // INTERESTING WHY? less that 1024*2 will do reboot loop
+    xTaskCreate(&vTaskInit, "task_init", 1024*2, NULL, 1, &task_init_loop);
 
     // vtaskStartScheduler(); // not needed because app_main already is a task
-    vTaskDelete(NULL);
-
+    //vTaskDelete(NULL);
 }

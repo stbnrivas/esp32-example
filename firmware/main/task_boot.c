@@ -2,7 +2,7 @@
 
 
 void vTaskBoot(void* pvParams){
-    uint32_t memory = uxTaskGetStackHighWaterMark(NULL);;
+    uint32_t memory = uxTaskGetStackHighWaterMark(NULL);
     ESP_LOGI("ESP32_APP","memory boot=%d",memory);
     task_boot_state_t state = TB__SET_PINOUT;
     for(;;){
@@ -20,7 +20,8 @@ void vTaskBoot(void* pvParams){
                 break;
             case TB__RESUME_TASK_INIT:
                 ESP_LOGI("ESP32_APP","boot: state=%d",state);
-                //vTaskResume(task_init);
+                ESP_LOGI("ESP32_APP","boot: resuming init");
+                vTaskResume(task_init_loop);
                 state = TB__SUSPEND_SELF;
                 break;
             default:

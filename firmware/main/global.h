@@ -15,6 +15,7 @@ uint8_t buf_rx[BUF_SIZE];
 char buf_tx[BUF_SIZE];
 
 TaskHandle_t task_boot_loop;
+TaskHandle_t task_init_loop;
 
 
 #endif
