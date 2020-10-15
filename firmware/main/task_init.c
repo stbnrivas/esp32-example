@@ -11,21 +11,24 @@ void vTaskInit(void* pvParams){
                 ESP_LOGI("ESP32_APP","init: suspend");
                 vTaskSuspend(NULL);
                 ESP_LOGI("ESP32_APP","init: state=%d",state);
+                vTaskDelay(DELAY/portTICK_PERIOD_MS);
                 state = TI__INIT_A;
                 break;
             case TI__INIT_A:
                 ESP_LOGI("ESP32_APP","init: state=%d",state);
-                vTaskDelay(1000/portTICK_PERIOD_MS);
+                vTaskDelay(DELAY/portTICK_PERIOD_MS);
                 state = TI__INIT_B;
                 break;
             case TI__INIT_B:
                 ESP_LOGI("ESP32_APP","init: state=%d",state);
-                vTaskDelay(1000/portTICK_PERIOD_MS);
+                vTaskDelay(DELAY/portTICK_PERIOD_MS);
                 state = TI__RESUME_TASK_NETWORK;
                 break;
             case TI__RESUME_TASK_NETWORK:
                 ESP_LOGI("ESP32_APP","init: state=%d",state);
+                ESP_LOGI("ESP32_APP","init: resuming network");
                 //vTaskResume(task_boot_loop);
+                vTaskDelay(DELAY/portTICK_PERIOD_MS);
                 vTaskResume(task_network_loop);
                 state = TI__SUSPEND_SELF;
                 break;

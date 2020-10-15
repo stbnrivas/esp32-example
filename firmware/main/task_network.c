@@ -10,21 +10,25 @@ void vTaskNetwork(void* pvParams){
             case TN__SUSPEND_SELF:
                 vTaskSuspend(NULL);
                 ESP_LOGI("ESP32_APP","network: state=%d",state);
+                vTaskDelay(DELAY/portTICK_PERIOD_MS);
                 state = TN__CHECK_NETWORK;
                 break;
             case TN__CHECK_NETWORK:
                 ESP_LOGI("ESP32_APP","network: state=%d",state);
-                vTaskDelay(1000/portTICK_PERIOD_MS);
+                vTaskDelay(DELAY/portTICK_PERIOD_MS);
                 state = TN__EXCEED_RETRY_REBOOT;
                 break;
             case TN__EXCEED_RETRY_REBOOT:
                 ESP_LOGI("ESP32_APP","network: state=%d",state);
-                vTaskDelay(1000/portTICK_PERIOD_MS);
+                vTaskDelay(DELAY/portTICK_PERIOD_MS);
                 state = TN__RESUME_TASK_CONNECTION;
                 break;
             case TN__RESUME_TASK_CONNECTION:
                 ESP_LOGI("ESP32_APP","network: state=%d",state);
-                vTaskResume(task_boot_loop);
+                ESP_LOGI("ESP32_APP","network: resuming connection");
+                //vTaskResume(task_boot_loop);
+                vTaskDelay(DELAY/portTICK_PERIOD_MS);
+                vTaskResume(task_connection_loop);
                 state = TN__SUSPEND_SELF;
                 break;
             default:

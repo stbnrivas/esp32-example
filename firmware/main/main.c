@@ -16,6 +16,7 @@
 #include "task_boot.h"
 #include "task_init.h"
 #include "task_network.h"
+#include "task_connection.h"
 
 
 void app_main(){
@@ -25,6 +26,7 @@ void app_main(){
     xTaskCreate(&vTaskBoot, "task_boot", 1024*2, NULL, 2, &task_boot_loop); // INTERESTING WHY? less that 1024*2 will do reboot loop
     xTaskCreate(&vTaskInit, "task_init", 1024*2, NULL, 1, &task_init_loop);
     xTaskCreate(&vTaskNetwork, "task_network", 1024*2, NULL, 1, &task_network_loop);
+    xTaskCreate(&vTaskConnection, "task_connection", 1024*2, NULL, 1, &task_connection_loop);
 
     // vtaskStartScheduler(); // not needed because app_main already is a task
     //vTaskDelete(NULL);

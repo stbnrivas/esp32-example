@@ -11,16 +11,18 @@ void vTaskBoot(void* pvParams){
                 ESP_LOGI("ESP32_APP","boot: state=%d",state);
                 vTaskSuspend(NULL);
                 ESP_LOGI("ESP32_APP","resume task boot");
+                vTaskDelay(DELAY/portTICK_PERIOD_MS);
                 state = TB__SET_PINOUT;
                 break;
             case TB__SET_PINOUT:
                 ESP_LOGI("ESP32_APP","boot: state=%d",state);
-                vTaskDelay(1000/portTICK_PERIOD_MS);
+                vTaskDelay(DELAY/portTICK_PERIOD_MS);
                 state = TB__RESUME_TASK_INIT;
                 break;
             case TB__RESUME_TASK_INIT:
                 ESP_LOGI("ESP32_APP","boot: state=%d",state);
                 ESP_LOGI("ESP32_APP","boot: resuming init");
+                vTaskDelay(DELAY/portTICK_PERIOD_MS);
                 vTaskResume(task_init_loop);
                 state = TB__SUSPEND_SELF;
                 break;
