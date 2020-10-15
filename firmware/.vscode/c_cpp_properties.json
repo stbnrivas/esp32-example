@@ -25,6 +25,7 @@
                 "${IDF_PATH}/components/soc/include",
                 "${IDF_PATH}/components/driver/include",
                 "${IDF_PATH}/components/freertos/include",
+                "${IDF_PATH}/components/freertos/include/freertos/",
                 "${IDF_PATH}/components/freertos/include/freertos",
                 "${IDF_PATH}/components/tcpip_adapter/include",
                 "${IDF_PATH}/components/nvs_flash/include",

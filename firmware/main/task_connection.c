@@ -30,9 +30,10 @@ void vTaskConnection(void* pvParams){
                 break;
             case TC__RESUME_TASK_BOOT:
                 ESP_LOGI("ESP32_APP","connection: state=%d",state);
-                ESP_LOGI("ESP32_APP","connection: resuming boot");
+                ESP_LOGI("ESP32_APP","connection: resuming update sender");
                 vTaskDelay(DELAY/portTICK_PERIOD_MS);
-                vTaskResume(task_boot_loop);
+                //vTaskResume(task_boot_loop);
+                vTaskResume(task_update_sender_loop);
                 state = TC__SUSPEND_SELF;
                 break;
             default:

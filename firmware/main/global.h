@@ -19,7 +19,10 @@ TaskHandle_t task_init_loop;
 TaskHandle_t task_network_loop;
 TaskHandle_t task_connection_loop;
 
-#define DELAY 1000
+TaskHandle_t task_update_sender_loop;
+TaskHandle_t task_update_receiver_loop;
+
+#define DELAY 500
 
 
 #endif

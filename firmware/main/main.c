@@ -17,6 +17,7 @@
 #include "task_init.h"
 #include "task_network.h"
 #include "task_connection.h"
+#include "task_update_sender.h"
 
 
 void app_main(){
@@ -27,6 +28,10 @@ void app_main(){
     xTaskCreate(&vTaskInit, "task_init", 1024*2, NULL, 1, &task_init_loop);
     xTaskCreate(&vTaskNetwork, "task_network", 1024*2, NULL, 1, &task_network_loop);
     xTaskCreate(&vTaskConnection, "task_connection", 1024*2, NULL, 1, &task_connection_loop);
+
+    xTaskCreate(&vTaskUpdateSender, "task_update_sender", 1024*2, NULL, 1, &task_update_sender_loop);
+    xTaskCreate(&vTaskUpdateReceiver, "task_update_receiver", 1024*2, NULL, 1, &task_update_receiver_loop);
+
 
     // vtaskStartScheduler(); // not needed because app_main already is a task
     //vTaskDelete(NULL);
