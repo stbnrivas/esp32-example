@@ -6,7 +6,7 @@
 typedef enum {
     TB__SUSPEND_SELF,
     TB__SET_PINOUT,
-    TB__RESUME_TASK_NETWORK,
+    TB__RESUME_TASK_INIT,
 } task_boot_state_t;
 
 void vTaskBoot(void* pvParams);
