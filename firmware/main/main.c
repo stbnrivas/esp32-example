@@ -18,9 +18,11 @@
 
 void app_main(){
     esp_log_level_set("ESP32_APP",ESP_LOG_INFO);
-	ESP_LOGI("ESP32_APP","booting");
+    ESP_LOGI("ESP32_APP","booting");
 
+    xTaskCreate(&vTaskNetwork, "task_boot", 1024*1, NULL, 1, &task_network_loop);
 
-    xTaskCreate(&vTaskBoot, "task_boot", 1024*2, NULL, 1, &task_boot_loop);
+    // vtaskStartScheduler(); // not needed because app_main already is a task
+    vTaskDelete(NULL);
 
 }
